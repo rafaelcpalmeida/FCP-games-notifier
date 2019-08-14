@@ -1,9 +1,10 @@
 package main
 
 import (
-	"FCP-games-notifier/src"
+	"github.com/rafaelcpalmeida/FCP-games-notifier/src"
 	"log"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -11,5 +12,14 @@ func main() {
 		log.Fatal("Recipient number environment variable not found")
 	}
 
-	src.SendSMS(os.Getenv("FCP_GAMES_NOTIFIER_RECIPIENT_NUMBER"), "Isto é um assalto!")
+	if gameDay, games := src.PortoPlaysToday(); gameDay {
+		sms := strings.Builder{}
+		sms.WriteString("⚠️⚠️⚠️ Beware! ⚠️⚠️⚠️\nToday is game day.\n\nGames today:\n\n")
+
+		for _, game := range games {
+			sms.WriteString(game.Team + " at " + game.Time + "\n")
+		}
+
+		src.SendSMS(os.Getenv("FCP_GAMES_NOTIFIER_RECIPIENT_NUMBER"), sms.String())
+	}
 }

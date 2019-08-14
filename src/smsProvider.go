@@ -14,15 +14,15 @@ import (
 )
 
 type twilio struct {
-	accountSid string
-	authToken string
-	urlStr string
+	accountSid	string
+	authToken	string
+	urlStr		string
 }
 
 type message struct {
-	from string
-	to string
-	body string
+	from	string
+	to		string
+	body	string
 }
 
 func SendSMS(recipientNumber string, messageBody string) {
