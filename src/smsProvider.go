@@ -42,7 +42,7 @@ func SendSMS(recipientNumber string, messageBody string) {
 }
 
 func smsProvider() (twilio, error) {
-	if len(os.Getenv("TWILIO_ACCOUNT_SID")) == 0 || len(os.Getenv("TWILIO_ACCOUNT_SID")) == 0 {
+	if len(os.Getenv("TWILIO_ACCOUNT_SID")) == 0 || len(os.Getenv("TWILIO_ACCOUNT_AUTH_TOKEN")) == 0 {
 		return twilio{}, errors.New("one or more environment variables not found")
 	}
 
