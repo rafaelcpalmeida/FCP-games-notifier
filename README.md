@@ -27,6 +27,14 @@ To use this in a live system you need to setup three environment variables:
 - *TWILIO_ACCOUNT_SID* - Twilio specific account identifier.
 - *TWILIO_ACCOUNT_AUTH_TOKEN* - Twilio specific account authentication token.
 
+To have the binary being executed daily you can use:
+
+```bash
+00 9 * * 1-5 . /root/.bashrc; /root/fcp-games-notifier
+```
+
+The above will execute every working day at 9:00. You can costumize the cron per your needs / desires.
+
 ## Versioning
 
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/rafaelcpalmeida/FCP-games-notifier/releases).
